@@ -2,15 +2,15 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name = 'index'),
-    path('log/', views.logging, name = 'log'),
-    path('reg/', views.registration, name = 'reg'),
-    path('add/', views.adduser, name = 'add'),
-    path('list/', views.userlist, name = 'list'),
-    path('list/<nickname>/', views.chat, name = 'nickname'),
-    path('update/', views.updatelist, name = 'update'),
-    path('update/<nickname>/', views.updatemessages, name = 'message'),
-    path('message/', views.addmessage, name = 'message'),
-
-    path('truncate/', views.truncate, name = 'truncate'),
+	path('', views.signin, name = 'signin'),
+	path('log/', views.log, name = 'log'),
+	path('reg/', views.reg, name = 'reg'),
+	path('add/', views.add, name = 'add'),
+	path('create/', views.create, name = 'add'),
+	path('update/', views.update, name = 'update'),
+	#path('survey/', views.userlist, name = 'userlist')
+	#path('survey/<nickname>', views.surveylist, name = 'surveylist')
+	path('survey/<nickname>/<int:id>', views.survey, name = 'survey'),
+	path('answer/', views.answer, name = 'answer'),
+	path('truncate/', views.truncate, name = 'truncate'),
 ]

@@ -65,23 +65,23 @@ WSGI_APPLICATION = 'freeSurvey.wsgi.application'
 
 
 # Database
-# mysql://bf199d2688f63a:8296016b@eu-cdbr-west-02.cleardb.net/heroku_e3f89a5afdbe8e0?reconnect=true
-# username: bf199d2688f63a
-# password: 8296016b
+# mysql://bbdb95f15eeebe:d1971284@eu-cdbr-west-02.cleardb.net/heroku_7099bf63db32b29?reconnect=true
+# username: bbdb95f15eeebe
+# password: d1971284
 
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql', 
-		'NAME': 'heroku_e3f89a5afdbe8e0',
-		'USER': 'bf199d2688f63a',
-		'PASSWORD': '8296016b',
+		'NAME': 'heroku_7099bf63db32b29',
+		'USER': 'bbdb95f15eeebe',
+		'PASSWORD': 'd1971284',
 		'HOST': 'eu-cdbr-west-02.cleardb.net',
 		'PORT': '',
 		#'OPTIONS': {
 		#	'ssl': {
 		#		'ca': 'certificates/cleardb-ca.pem',
-		#		'cert': 'certificates/bf199d2688f63a-cert.pem',
-		#		'key': 'certificates/bf199d2688f63a-key.pem'
+		#		'cert': 'certificates/bbdb95f15eeebe-cert.pem',
+		#		'key': 'certificates/bbdb95f15eeebe-key.pem'
 		#	}
 		#}
 	}

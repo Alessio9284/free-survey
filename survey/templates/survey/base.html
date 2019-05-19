@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="it-IT">
+<html lang="en">
 	<head>
 		<title>{% block title %}{% endblock title %}</title>
 
@@ -8,12 +8,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
 		{% block style %}{% endblock style %}
 
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 
 		{% block script %}{% endblock script %}
 	</head>

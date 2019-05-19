@@ -11,7 +11,7 @@ body, html
 {
 	height: 100%;
 	font-family: Montserrat, sans-serif;
-	background-image: url("../img/sfondo.png");
+	background-image: url("../img/sfondo.jpg");
 	background-size: cover;
 }
 
@@ -110,7 +110,7 @@ button:hover
 {
 	display: block;
 	font-size: 40px;
-	color: dodgerblue;
+	color: orangered;
 	line-height: 1.2;
 	text-align: center;
 	padding-bottom: 50px;
@@ -164,11 +164,10 @@ button:hover
 	-moz-transition: all 0.4s;
 	transition: all 0.4s;
 
-	background: #6a7dfe;
-	background: -webkit-linear-gradient(left, #21d4fd, #0E22FD);
-	background: -o-linear-gradient(left, #21d4fd, #0E22FD);
-	background: -moz-linear-gradient(left, #21d4fd, #0E22FD);
-	background: linear-gradient(left, #21d4fd, #0E22FD);
+	background: -webkit-linear-gradient(left, #FFD700, #FF0000);
+	background: -o-linear-gradient(left, #FFD700, #FF0000);
+	background: -moz-linear-gradient(left, #FFD700, #FF0000);
+	background: linear-gradient(left, #FFD700, #FF0000);
 }
 
 .placeholder::after
@@ -231,10 +230,10 @@ button:hover
 	width: 300%;
 	height: 100%;
 	background: #a64bf4;
-	background: -webkit-linear-gradient(right, #21d4fd, #0E22FD, #21d4fd, #0E22FD);
-	background: -o-linear-gradient(right, #21d4fd, #0E22FD, #21d4fd, #0E22FD);
-	background: -moz-linear-gradient(right, #21d4fd, #0E22FD, #21d4fd, #0E22FD);
-	background: linear-gradient(right, #21d4fd, #0E22FD, #21d4fd, #0E22FD);
+	background: -webkit-linear-gradient(right, #FFD700, #FF0000, #FFD700, #FF0000);
+	background: -o-linear-gradient(right, #FFD700, #FF0000, #FFD700, #FF0000);
+	background: -moz-linear-gradient(right, #FFD700, #FF0000, #FFD700, #FF0000);
+	background: linear-gradient(right, #FFD700, #FF0000, #FFD700, #FF0000);
 	top: 0;
 	left: -100%;
 

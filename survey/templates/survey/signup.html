@@ -1,0 +1,61 @@
+{% extends "survey/base.html" %}
+
+{% load static %}
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block style %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock style %}
+
+{% block script %}
+	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+{% endblock script %}
+
+{% block content %}
+	<div class="contenitore">
+		<div class="log_reg">
+			<form method="post" action="/add/" onsubmit="return checkPassword();">
+				<span class="titolo">
+					Registration
+				</span>
+
+				<div class="inputs">
+					<input class="input" type="text" name="nickname" oninput="place_holder(event, 0);" autocomplete="off">
+					<span class="placeholder" data-placeholder="Nickname"></span>
+				</div>
+
+				<div class="inputs">
+					<input class="input" type="password" name="password" oninput="place_holder(event, 1);" autocomplete="off">
+					<span class="placeholder" data-placeholder="Password"></span>
+				</div>
+
+				<div class="inputs">
+					<input class="input" type="password" name="cpassword" oninput="place_holder(event, 2);" autocomplete="off">
+					<span class="placeholder" data-placeholder="Confirm Password"></span>
+				</div>
+
+				{% csrf_token %}
+
+				<div class="base">
+					<div class="posizione">
+						<div class="animazione"></div>
+						<button class="btn" type="submit">
+							Sign Up
+						</button>
+					</div>
+				</div>
+
+				<div class="link">
+					<span class="testo">
+						Already have an account?
+					</span>
+
+					<a href="../">
+						Sign In
+					</a>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock content %}
