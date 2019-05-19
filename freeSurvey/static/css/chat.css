@@ -1,0 +1,74 @@
+.log_reg
+{
+	padding: 33px 55px;
+	text-align: center;
+	width: 500px;
+}
+
+.tempo
+{
+	font-size: 9px;
+}
+
+#barra
+{
+	margin-top: 20px;
+	text-align: initial;
+	position: relative;
+}
+
+#messaggi
+{
+	margin-top: 20px;
+	min-height: 400px;
+	max-height: 400px;
+	overflow-y: scroll;
+}
+
+#messaggi::-webkit-scrollbar
+{ 
+    display: none;
+}
+
+#messaggi > div
+{
+	padding: 5px 0px;
+}
+
+#invio
+{
+	position: absolute;
+	right: 0px;
+	top: 25%;
+}
+
+.sinistra
+{
+	text-align: left;
+	word-break: break-all;
+}
+
+.destra
+{
+	text-align: right;
+	word-break: break-all;
+}
+
+input
+{
+	border: 1px solid black;
+	width: 80%;
+    padding: 5px;
+    font-family: Montserrat;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 400px)
+{
+	.log_reg
+	{
+		min-width: 250px;
+    	padding: 60px 30px 33px 30px;
+    }
+}

@@ -1,0 +1,1 @@
+web: gunicorn freeSurvey.wsgi:application --log-file -

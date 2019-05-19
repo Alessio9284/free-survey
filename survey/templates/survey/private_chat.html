@@ -1,0 +1,35 @@
+{% extends "survey/base.html" %}
+
+{% load static %}
+
+{% block title %}Private Chat{% endblock title %}
+
+{% block style %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}">
+{% endblock style %}
+
+{% block script %}
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/chat.js' %}"></script>
+	<script>
+		var frm = "{{ frm }}";
+		var to = "{{ to }}";
+	</script>
+{% endblock script %}
+
+{% block content %}
+	<div class="contenitore">
+		<div class="log_reg">
+			<h1>Chat with {{ to }}&nbsp<span id="connesso">⬤</span></h1>
+			<div id="messaggi"></div>
+			<div id="barra">
+				<input type="text" id="messaggio" autocomplete="off" maxlength="255">
+				<button id="invio">SEND</button>
+			</div>
+			<div class="footer">
+				<a href="../">User List</a> | 
+				<a href="../../">Logout</a>
+			</div>
+		</div>
+	</div>
+{% endblock content %}
