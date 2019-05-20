@@ -31,6 +31,11 @@ input
 	outline: none;
 }
 
+textarea
+{
+	
+}
+
 #contenitore
 {
 	position: absolute;
