@@ -7,14 +7,14 @@ class User(models.Model):
 class Survey(models.Model):
 	name = models.CharField(max_length = 255)
 	description = models.CharField(max_length = 255)
-	date = models.DateTimeField(auto_now_add=True)
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	date = models.DateTimeField(auto_now_add = True)
+	user = models.ForeignKey(User, on_delete = models.CASCADE)
 
 class Question(models.Model):
 	question = models.CharField(max_length = 255)
-	survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
+	survey = models.ForeignKey(Survey, on_delete = models.CASCADE)
 
 class Answer(models.Model):
 	answer = models.CharField(max_length = 255)
 	score = models.IntegerField(default = 0)
-	question = models.ForeignKey(Question, on_delete=models.CASCADE)
+	question = models.ForeignKey(Question, on_delete = models.CASCADE)

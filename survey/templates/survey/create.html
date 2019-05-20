@@ -13,4 +13,28 @@
 {% endblock script %}
 
 {% block content %}
+	<div id="contenitore">
+		<div id="frame">
+			<form method="post" action="/update/">
+				<span class="titolo">
+					<span>Create a</span> Survey
+				</span>
+
+				<div class="inputs">
+					<input type="text" name="title" placeholder="Password" autocomplete="off">
+					<textarea name="description" placeholder="Password" autocomplete="off"></textarea>
+				</div>
+
+				<aside>
+					
+				</aside>
+
+				<div class="inputs">
+					<input type="text" name="title" placeholder="Password" autocomplete="off">
+				</div>
+
+				{% csrf_token %}
+			</form>
+		</div>
+	</div>
 {% endblock content %}

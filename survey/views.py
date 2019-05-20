@@ -1,12 +1,10 @@
 from django.shortcuts import render
 from .models import User, Survey, Question, Answer
-from .functions import FormDati
+from .functions import FormUser
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from hashlib import md5
 from django.core import serializers
-from django.db.models import Q
 
-import random
 import json
 
 # Pages
@@ -16,7 +14,6 @@ def signin(request):
 
 		nickname = request.session['nickname']
 
-		# Distruzione della sessione
 		del request.session['nickname']
 
 	return render(request, 'survey/signin.html')
@@ -36,6 +33,64 @@ def survey(request):
 # Functions
 def log(request):
 
+	if request.method == 'POST':
+
+		form = FormUser(request.POST)
+
+		if form.is_valid():
+
+			dati = form.cleaned_data
+
+			nickname = dati['nickname']
+			password = md5(dati['password'].encode()).hexdigest()
+
+			user = User.objects.filter(nickname = nickname, password = password)
+
+			if (user.exists()):
+
+				request.session['nickname'] = nickname
+
+				return HttpResponseRedirect('/create/')
+			else:
+				return HttpResponseRedirect('../')
+		else:
+			return HttpResponseRedirect('../')
+	else:
+		return HttpResponseRedirect('../')
+
+def add(request):
+
+	if request.method == 'POST':
+
+		form = FormUser(request.POST)
+
+		if form.is_valid():
+
+			dati = form.cleaned_data
+			nickname = dati['nickname']
+
+			if not (User.objects.filter(nickname = nickname).exists()):
+
+				password = dati['password']
+				
+				user = User(
+					nickname = nickname,
+					password = md5(password.encode()).hexdigest(),
+				)
+
+				user.save()
+
+				return HttpResponseRedirect('../')
+			else:
+				return HttpResponseRedirect('/reg/')
+		else:
+			return HttpResponseRedirect('/reg/')
+	else:
+		return HttpResponseRedirect('/reg/')
+
+
+def update(request):
+	
 	if request.method == 'POST':
 
 		# Prendo i dati del Form
@@ -64,54 +119,6 @@ def log(request):
 			return HttpResponseRedirect('../')
 	else:
 		return HttpResponseRedirect('../')
-
-def add(request):
-
-	if request.method == 'POST':
-
-		# Prendo i dati del Form
-		form = FormDati(request.POST)
-
-		# Controllo che il form sia valido
-		if form.is_valid():
-
-			# Raccolgo i dati in modo da essere utilizzabili
-			dati = form.cleaned_data
-			nickname = dati['nickname']
-
-			# Controllo che il nome utente non esista già
-			if not (User.objects.filter(nickname = nickname).exists()):
-
-				password = dati['password']
-				
-				# Creazione dell'utente tramite un oggetto
-				user = User(
-					nickname = nickname,
-					password = md5(password.encode()).hexdigest(),
-				)
-
-				# INSERT nel database
-				user.save()
-
-				return HttpResponseRedirect('../')
-			else:
-				return HttpResponseRedirect('/reg/')
-		else:
-			return HttpResponseRedirect('/reg/')
-	else:
-		return HttpResponseRedirect('/reg/')
-
-
-def update(request):
-	'''
-		if checkSession(request):
-
-			userlist = serializers.serialize('json', User.objects.filter(active = True))
-
-			return JsonResponse(userlist, safe = False)
-		else:
-	'''		
-	return HttpResponseRedirect('../')
 
 def answer(request):
 	'''
