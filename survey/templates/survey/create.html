@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Visualize Survey{% endblock title %}
+{% block title %}Create Survey{% endblock title %}
 
 {% block style %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/create.css' %}">
@@ -13,8 +13,8 @@
 {% endblock script %}
 
 {% block content %}
-	<div id="contenitore">
-		<div id="frame">
+	<div class="contenitore">
+		<div class="frame">
 			<form method="post" action="/update/">
 				<span class="titolo">
 					<span>Create a</span> Survey

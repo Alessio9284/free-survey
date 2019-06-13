@@ -4,17 +4,9 @@
 
 {% block title %}Sign Up{% endblock title %}
 
-{% block style %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-{% endblock style %}
-
-{% block script %}
-	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-{% endblock script %}
-
 {% block content %}
 	<div class="contenitore">
-		<div class="log_reg">
+		<div class="frame" style="width: 380px;">
 			<form method="post" action="/add/" onsubmit="return checkPassword();">
 				<span class="titolo">
 					Registration

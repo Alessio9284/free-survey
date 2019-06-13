@@ -22,11 +22,21 @@ def reg(request):
 
 	return render(request, 'survey/signup.html')
 
+def home(request):
+
+	if checkSession(request):
+
+		nickname = request.session['nickname']
+		surveys = Survey.objects.filter(user = nickname)
+
+		return render(request, 'survey/home.html', {'surveys' : surveys})
+
+
 def create(request):
 
 	return render(request, 'survey/create.html')
 
-def survey(request):
+def survey(request, nickname, id):
 
 	return render(request, 'survey/survey.html')
 
@@ -50,7 +60,7 @@ def log(request):
 
 				request.session['nickname'] = nickname
 
-				return HttpResponseRedirect('/create/')
+				return HttpResponseRedirect('/home/')
 			else:
 				return HttpResponseRedirect('../')
 		else:
