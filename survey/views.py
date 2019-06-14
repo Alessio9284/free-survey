@@ -30,6 +30,8 @@ def home(request):
 		surveys = Survey.objects.filter(user = nickname)
 
 		return render(request, 'survey/home.html', {'surveys' : surveys})
+	else:
+		return HttpResponseRedirect('../')
 
 
 def create(request):

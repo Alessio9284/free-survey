@@ -41,6 +41,11 @@ a:hover
 	color: linear-gradient(left, #21d4fd, #b721ff);
 }
 
+input, textarea
+{
+	font-family: Montserrat, sans-serif;
+}
+
 input
 {
 	outline: none;
@@ -112,7 +117,6 @@ button:hover
 	color: orangered;
 	line-height: 1.2;
 	text-align: center;
-	padding-bottom: 50px;
 	font-weight: bold;
 }
 
