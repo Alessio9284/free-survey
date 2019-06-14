@@ -103,28 +103,48 @@ def add(request):
 
 def update(request):
 	
-	if request.method == 'POST':
+	if checkSession(request):
 
-		# Prendo i dati del Form
-		form = FormDati(request.POST)
+		if request.is_ajax():
 
-		# Controllo che il form sia valido
-		if form.is_valid():
+			if request.method == 'POST':
 
-			# Raccolgo i dati in modo da essere utilizzabili
-			dati = form.cleaned_data
+				data = json.loads(request.body)
 
-			nickname = dati['nickname']
-			password = md5(dati['password'].encode()).hexdigest()
+				nickname = request.session['nickname']
 
-			# Controllo se l'utente esiste
-			user = User.objects.filter(nickname = nickname, password = password)
+				user = User.objects.get(nickname = nickname)
 
-			if (user.exists()):
+				s = Survey(
+					name = data.name,
+					description = data.description,
+					user = User.objects.get(nickname = nickname)
+				)
 
-				request.session['nickname'] = nickname
+				s.save()
 
-				return HttpResponseRedirect('/create/')
+				s_num = Survey.objects.filter(user = user).latest('id')
+
+				for quest in data.questions:
+
+					q = Question(
+						question = quest.question,
+						survey = s_num
+					)
+
+					q.save()
+
+					for answer in quest.answers:
+
+						a = Answer(
+							answer = answer,
+							question = Question.objects.filter(survey = s_num)
+						)
+
+						a.save()
+
+				return HttpResponseRedirect('../home')
+
 			else:
 				return HttpResponseRedirect('../')
 		else:

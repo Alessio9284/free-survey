@@ -10,12 +10,14 @@
 
 {% block script %}
 	<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/cookie.js' %}"></script>
 {% endblock script %}
 
 {% block content %}
 	<div class="contenitore">
 		<div class="frame">
-			<form method="post" action="/update/">
+			<form id="survey">
 				<span class="titolo">
 					<span>Create a</span> Survey
 				</span>
@@ -32,14 +34,9 @@
 						<div class="question">
 							<input type="text" class="questions" name="question0" placeholder="Question 0" autocomplete="off">
 
-							<section>
+							<section class="answers">
 								<input type="text" name="answer01" placeholder="Answer 1" autocomplete="off">
-							</section>
-							<section>
 								<input type="text" name="answer02" placeholder="Answer 2" autocomplete="off">
-							</section>
-							<section>
-								<input type="text" name="answer03" placeholder="Answer 3" autocomplete="off">
 							</section>
 							<div class="buttons">
 								<input type="button" class="add_a" value="Add Answer">
@@ -47,6 +44,7 @@
 							</div>
 						</div>
 					</div>
+					<input type="button" id="publish" value="Publish and Get the link">
 				</div>
 
 				{% csrf_token %}
@@ -60,10 +58,15 @@
 	TEMPLATE
 
 	<div class="question">
-		<input type="text" class="question" name="questionN" placeholder="Question N" autocomplete="off">
+		<input type="text" class="questions" name="questionN" placeholder="Question N" autocomplete="off">
 
-		<div class="inputs">
+		<section class="answers">
 			<input type="text" name="answerNN" placeholder="Answer N" autocomplete="off">
+			<input type="text" name="answerNN" placeholder="Answer N" autocomplete="off">
+		</section>
+		<div class="buttons">
+			<input type="button" class="add_a" value="Add Answer">
+			<input type="button" class="rem_a" value="Remove Answer">
 		</div>
 	</div>
 
