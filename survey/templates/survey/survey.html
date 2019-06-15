@@ -13,4 +13,22 @@
 {% endblock script %}
 
 {% block content %}
+	<div>
+		<script>
+			var survey = {{ survey }};
+			var questions = "{{ questions }}";
+			var answers = "{{ answers }}";
+
+			console.log(JSON.parse(survey));
+			console.log(JSON.parse(questions));
+			console.log(JSON.parse(answers));
+		</script>
+		{% for question in questions %}
+			<div class="survey" onclick="document.location='../survey/{{ survey.user.nickname }}/{{ survey.id }}';">
+				<p class="name">{{ survey.name }}</p>
+				<p class="description">{{ survey.description }}</p>
+				<p class="date">{{ survey.date }}</p>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock content %}

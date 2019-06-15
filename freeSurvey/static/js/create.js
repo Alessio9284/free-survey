@@ -75,30 +75,30 @@ $(document).on("click", "#publish", function()
 			answers.push($($(".question > .answers")[i].children[j]).val());
 		}
 
-		questions.push({"question" : $($(".question > input")[i]).val(), "answers" : answers});
+		questions.push({question : $($(".question > input")[i]).val(), answers : answers});
 	}
 
 	var json =
 	{
-		"name" : $("input[name=title]").val(),
-		"description" : $("textarea[name=description]").val(),
-		"questions" : questions
+		name : $("input[name=title]").val(),
+		description : $("textarea[name=description]").val(),
+		questions : questions
 	};
 
 	console.log(json);
 
 	$.ajax(
 	{
-    	type: "POST",
-    	url: "/update/",
-    	data: JSON.stringify(json),
-    	success: function(data)
-    	{
-    		console.log(data);
-    	},
-    	error: function(e)
-    	{
+		type: "POST",
+		url: "/update/",
+		data: JSON.stringify(json),
+		success: function(data)
+		{
+			console.log(data);
+		},
+		error: function(e)
+		{
 
-    	}
-    });
+		}
+	});
 });

@@ -3,7 +3,8 @@ from .models import User, Survey, Question, Answer
 from .functions import FormUser
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from hashlib import md5
-from django.core import serializers
+from django.core.serializers import serialize
+from django.shortcuts import get_object_or_404
 
 import json
 
@@ -38,9 +39,40 @@ def create(request):
 
 	return render(request, 'survey/create.html')
 
-def survey(request, nickname, id):
+def survey(request, nickname, id_):
 
-	return render(request, 'survey/survey.html')
+	u = User.objects.get(nickname = nickname)
+	s = Survey.objects.filter(id = id_, user = u)
+	q = Question.objects.filter(survey = s[0])
+	a = Answer.objects.filter(question = q[0])
+
+	# per ogni richiesta delle questioni bisogna prelevare anche tutte le risposte possibili
+
+	survey = serialize('json', s.only('name', 'description'))
+	questions = serialize('json', q.only('question'))
+	answers = serialize('json', a.only('answer'))
+
+	print(questions)
+	print(answers)
+
+	if checkSession(request):
+		return render(request, 'survey/survey.html',
+			{
+				'survey' : json.loads(survey),
+				'questions' : json.loads(questions),
+				'answers' : json.loads(answers),
+				'status' : 'author'
+			}
+		)
+	else:
+		return render(request, 'survey/survey.html',
+			{
+				'survey' : json.loads(survey),
+				'questions' : json.loads(questions),
+				'answers' : json.loads(answers),
+				'status' : 'user'
+			}
+		)
 
 # Functions
 def log(request):
@@ -113,44 +145,44 @@ def update(request):
 
 				nickname = request.session['nickname']
 
-				user = User.objects.get(nickname = nickname)
+				u = User.objects.get(nickname = nickname)
+
+				print(json.dumps(data))
 
 				s = Survey(
-					name = data.name,
-					description = data.description,
-					user = User.objects.get(nickname = nickname)
+					name = data['name'],
+					description = data['description'],
+					user = u
 				)
 
 				s.save()
 
-				s_num = Survey.objects.filter(user = user).latest('id')
-
-				for quest in data.questions:
+				for quest in data['questions']:
 
 					q = Question(
-						question = quest.question,
-						survey = s_num
+						question = quest['question'],
+						survey = s
 					)
 
 					q.save()
 
-					for answer in quest.answers:
+					for answer in quest['answers']:
 
 						a = Answer(
 							answer = answer,
-							question = Question.objects.filter(survey = s_num)
+							question = q
 						)
 
 						a.save()
 
-				return HttpResponseRedirect('../home')
+				return JsonResponse({'status': 'saved'})
 
 			else:
-				return HttpResponseRedirect('../')
+				return JsonResponse({'status': 'denied'})
 		else:
-			return HttpResponseRedirect('../')
+			return JsonResponse({'status': 'denied'})
 	else:
-		return HttpResponseRedirect('../')
+		return JsonResponse({'status': 'denied'})
 
 def answer(request):
 	'''
