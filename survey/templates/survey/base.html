@@ -17,28 +17,9 @@
 		
 		<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 
-		<script type="text/javascript">
-			var _iub = _iub || [];
-			_iub.csConfiguration =
-			{
-				"lang": "en",
-				"siteId": 1621050,
-				"cookiePolicyId": 55978734,
-				"banner":
-				{
-					"acceptButtonDisplay": true,
-					"customizeButtonDisplay": true,
-					"position": "float-top-center",
-					"slideDown": false
-				}
-			};
-		</script>
-		<script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
-
 		{% block script %}{% endblock script %}
 	</head>
 	<body>
 		{% block content %}{% endblock content %}
-		<script type="text/javascript" src="{% static 'js/iubenda.js' %}"></script>
 	</body>
 </html>
