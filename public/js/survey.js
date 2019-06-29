@@ -5,22 +5,30 @@ $(document).on("click", ".answers > p", function(e)
 
 $(document).on("click", "#send", function()
 {
-	var answers = [];
+	var scores = [];
 
 	for(var i = 0; i < $(".question").length; i++)
 	{
-		answers.push($("#question" + i + " > .answers p input[type=radio]:checked").val());
+		scores.push(
+			{
+				answer : $("#question" + i + " > .answers p input[type=radio]:checked").val(),
+				question : $("#question" + i + " h2").html()
+			}
+		);
 	}
 
 	$.ajax(
 	{
 		type: "POST",
 		url: "/answers",
-		data: answers,
+		data: {
+			id : id,
+			scores : scores
+		},
 		success: function(data)
 		{
-			//console.log(data);
-			document.location = data.red;
+			console.log(data);
+			//document.location = data.red;
 		},
 		error: function(e)
 		{

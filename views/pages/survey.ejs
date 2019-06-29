@@ -5,6 +5,10 @@
 		<% include ../partials/header.ejs %>
 		<link rel="stylesheet" type="text/css" href="/css/survey.css">
 		<script type="text/javascript" src="/js/survey.js"></script>
+		<script type="text/javascript">
+			var id = "<%= survey._id %>";
+			var user = "<%= survey.user %>";
+		</script>
 	</head>
 	<body>
 		<div class="contenitore">
@@ -25,8 +29,11 @@
 							<div class="answers">
 								<% for(var j = 0; j < questions[i].answers.length; j++) { %>
 									<p>
-										<%= questions[i].answers[j] %><br>
-										<input type="radio" name="answer<%= i %>" id="answer<%= i %><%= j %>" value="<%= questions[i].answers[j] %>" />
+										<%= questions[i].answers[j].answer %><br>
+										<input type="radio" name="answer<%= i %>" id="answer<%= i %><%= j %>" value="<%= questions[i].answers[j].answer %>" />
+										<% if(user == "admin") { %>
+											<span class="score"><%= questions[i].answers[j].score %></span>
+										<% } %>
 									</p>
 								<% } %>
 							</div>

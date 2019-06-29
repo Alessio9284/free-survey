@@ -98,10 +98,13 @@ app.get('/survey', function(req, red)
 			if (err) throw err;
 
 			var cur = db.db(database);
+			var survey = 0;
 
 			cur.collection("surveys").find({user: user, _id : id}).toArray(function(err, res)
 			{
-				red.render('pages/survey', { survey : res[0] });
+				var user = (req.session.nickname ? "admin" : "user");
+
+				red.render('pages/survey', { survey : res[0], user : user });
 
 				db.close();
 			});
@@ -109,7 +112,7 @@ app.get('/survey', function(req, red)
 	}
 });
 
-/* login*/
+/* login */
 app.post('/log', function(req, red)
 {
 	var obj = req.body;
@@ -213,6 +216,52 @@ app.post('/update', function(req, red)
 			});
 		});
 	}
+});
+
+/* answers */
+app.post('/answers', function(req, red)
+{
+	var obj = req.body;
+
+	var id = new ObjectID(obj.id);
+
+	mongo.connect(url, { useNewUrlParser: true }, function(err, db)
+	{
+		if (err) throw err;
+
+		var cur = db.db(database);
+
+		for(var i = 0; i < obj.scores.length; i++)
+		{
+			var search = {
+				_id : id,
+				"questions.question" : obj.scores[i].question,
+				"questions.answers.answer" : obj.scores[i].answer
+			};
+
+			console.log(search);
+
+			var update = { $inc : { "questions.$[element1].answers.$[element2].score" : 1 } };
+
+			cur.collection("surveys").updateOne(search, update,
+				{ "arrayFilters":
+					[
+						{ "element1.question.score": { "$exists": true } },
+						{ "element2.answer.score": { "$exists": true } },
+					]
+				},
+				function(err, res)
+				{
+					if (err) throw err;
+
+					//console.log("Collection inserted!");*/
+
+					console.log("1 document updated");
+	    			db.close();
+				}
+			);
+		}
+	});
 });
 
 /* reset totale */

@@ -72,7 +72,7 @@ $(document).on("click", "#publish", function()
 
 		for(var j = 0; j < $(".question > .answers")[i].children.length; j++)
 		{
-			answers.push($($(".question > .answers")[i].children[j]).val());
+			answers.push({answer : $($(".question > .answers")[i].children[j]).val(), score: parseInt(0)});
 		}
 
 		questions.push({question : $($(".question > input")[i]).val(), answers : answers});
