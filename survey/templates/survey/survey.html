@@ -10,25 +10,65 @@
 
 {% block script %}
 	<script type="text/javascript" src="{% static 'js/survey.js' %}"></script>
+	<script>
+		var survey = JSON.parse({{ survey|safe }})[0].fields;
+		var questions = JSON.parse({{ questions|safe }});
+		var answers = JSON.parse({{ answers|safe }});
+		var pk = 0;
+
+		console.log(survey);
+		console.log(questions);
+		console.log(answers);
+
+		$(document).ready(function()
+		{
+			$("#name").text(survey.name);
+			$("#description").text(survey.description);
+
+			for(var i = 0; i < questions.length; i++)
+			{
+				console.log(questions[i]);
+
+				pk = questions[i].pk;
+
+				$("#survey").append(
+					"<div class='questions'>" + 
+					"<p>" + questions[i].fields.question + "</p>" +
+					"<div class='answers" + i + "'>" + 
+					"</div>" + 
+					"</div>"
+				);
+
+				for(var j = 0; j < answers.length; j++)
+				{
+					if(pk == answers[j].fields.question)
+					{
+						$(".answers" + i).append(
+							answers[j].fields.answer + 
+							"<input type='radio' name='answ" + i + "' value='" + answers[j].fields.answer + "'/>"
+						);
+					}
+				}
+			}
+		});
+	</script>
 {% endblock script %}
 
 {% block content %}
-	<div>
-		<script>
-			var survey = {{ survey }};
-			var questions = "{{ questions }}";
-			var answers = "{{ answers }}";
+	<div class="contenitore">
+		<div class="frame">
+			<span class="titolo">
+				<span>Welcome to</span> FreeSurvey
+			</span>
 
-			console.log(JSON.parse(survey));
-			console.log(JSON.parse(questions));
-			console.log(JSON.parse(answers));
-		</script>
-		{% for question in questions %}
-			<div class="survey" onclick="document.location='../survey/{{ survey.user.nickname }}/{{ survey.id }}';">
-				<p class="name">{{ survey.name }}</p>
-				<p class="description">{{ survey.description }}</p>
-				<p class="date">{{ survey.date }}</p>
-			</div>
-		{% endfor %}
+			<header>
+				<h2 id="name"></h2>
+				<p id="description"></p>
+			</header>
+			
+			<section id="survey">
+				
+			</section>
+		</div>
 	</div>
 {% endblock content %}

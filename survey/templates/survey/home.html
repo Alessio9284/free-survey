@@ -19,8 +19,8 @@
 				<span>Welcome to</span> FreeSurvey
 			</span>
 
-			<section>
-				<h2>Your Polls</h2>
+			<h2 id="sottotitolo">Your Polls</h2>
+			<section id="centro">
 				{% for survey in surveys %}
 					<div class="survey" onclick="document.location='../survey/{{ survey.user.nickname }}/{{ survey.id }}';">
 						<p class="name">{{ survey.name }}</p>

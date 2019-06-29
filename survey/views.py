@@ -52,24 +52,25 @@ def survey(request, nickname, id_):
 	questions = serialize('json', q.only('question'))
 	answers = serialize('json', a.only('answer'))
 
+	print(survey)
 	print(questions)
 	print(answers)
 
 	if checkSession(request):
 		return render(request, 'survey/survey.html',
 			{
-				'survey' : json.loads(survey),
-				'questions' : json.loads(questions),
-				'answers' : json.loads(answers),
+				'survey' : json.dumps(survey),
+				'questions' : json.dumps(questions),
+				'answers' : json.dumps(answers),
 				'status' : 'author'
 			}
 		)
 	else:
 		return render(request, 'survey/survey.html',
 			{
-				'survey' : json.loads(survey),
-				'questions' : json.loads(questions),
-				'answers' : json.loads(answers),
+				'survey' : json.dumps(survey),
+				'questions' : json.dumps(questions),
+				'answers' : json.dumps(answers),
 				'status' : 'user'
 			}
 		)
