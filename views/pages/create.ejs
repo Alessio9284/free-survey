@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Create Survey</title>
+		<% include ../partials/header.ejs %>
+		<link rel="stylesheet" type="text/css" href="/css/create.css">
+		<script type="text/javascript" src="/js/create.js"></script>
+	</head>
+	<body>
+		<div class="contenitore">
+			<div class="frame">
+				<form id="survey">
+					<span class="titolo">
+						<span>Create a</span> Survey
+					</span>
+
+					<div id="form_responsive">
+						<div id="base">
+							<input type="text" name="title" placeholder="Title of Survey" autocomplete="off">
+							<textarea name="description" placeholder="Description of Survey" maxlength="255" autocomplete="off"></textarea>
+							<p id="counter">Characters left: 255</p>
+						</div>
+						<div id="qs">
+							<input type="button" id="add_q" value="Add Question">
+							<input type="button" id="rem_q" value="Remove Question">
+							<div class="question">
+								<input type="text" class="questions" name="question0" placeholder="Question 0" autocomplete="off">
+
+								<section class="answers">
+									<input type="text" name="answer01" placeholder="Answer 1" autocomplete="off">
+									<input type="text" name="answer02" placeholder="Answer 2" autocomplete="off">
+								</section>
+								<div class="buttons">
+									<input type="button" class="add_a" value="Add Answer">
+									<input type="button" class="rem_a" value="Remove Answer">
+								</div>
+							</div>
+						</div>
+						<input type="button" id="publish" value="Publish and Get the link">
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

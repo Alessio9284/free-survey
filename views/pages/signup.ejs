@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Sign Up</title>
+		<% include ../partials/header.ejs %>
+	</head>
+	<body>
+		<div class="contenitore">
+			<div class="frame" style="width: 380px;">
+				<form method="post" action="../add/" onsubmit="return checkPassword();">
+					<span class="titolo" style="padding-bottom: 50px;">
+						Registration
+					</span>
+
+					<div class="inputs">
+						<input class="input" type="text" name="nickname" oninput="place_holder(event, 0);" autocomplete="off">
+						<span class="placeholder" data-placeholder="Nickname"></span>
+					</div>
+
+					<div class="inputs">
+						<input class="input" type="password" name="password" oninput="place_holder(event, 1);" autocomplete="off">
+						<span class="placeholder" data-placeholder="Password"></span>
+					</div>
+
+					<div class="inputs">
+						<input class="input" type="password" name="cpassword" oninput="place_holder(event, 2);" autocomplete="off">
+						<span class="placeholder" data-placeholder="Confirm Password"></span>
+					</div>
+
+					<div class="base">
+						<div class="posizione">
+							<div class="animazione"></div>
+							<button class="btn" type="submit">
+								Sign Up
+							</button>
+						</div>
+					</div>
+
+					<div class="link">
+						<span class="testo">
+							Already have an account?
+						</span>
+
+						<a href="../">
+							Sign In
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

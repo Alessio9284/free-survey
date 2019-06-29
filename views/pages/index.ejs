@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+	<head>
+		<% include ../partials/header.ejs %>
+	</head>
+
+	<body>
+		<div class="contenitore">
+			<div class="vis">
+				<form method="post" action="/visualize">
+					<span class="titolo">
+						<span>Welcome to</span> MongoFilm
+					</span>
+
+					<div class="inputs">
+						<input class="input" type="text" name="title" oninput="place_holder(event, 0);" autocomplete="off">
+						<span class="placeholder" data-placeholder="Title"></span>
+					</div>
+
+					<div class="inputs">
+						<input class="input" type="text" name="year" oninput="place_holder(event, 1);" autocomplete="off">
+						<span class="placeholder" data-placeholder="Year"></span>
+					</div>
+
+					<div class="inputs">
+						<input class="input" type="text" name="limit" oninput="place_holder(event, 2);" autocomplete="off" value="10" maxlength="3">
+						<span class="placeholder" data-placeholder="Limit" style="display: none;"></span>
+					</div>
+
+					<div class="base">
+						<div class="posizione">
+							<div class="animazione"></div>
+							<button class="btn" type="submit" name="sub" value="search">
+								Search
+							</button>
+						</div>
+						<div class="posizione">
+							<div class="animazione"></div>
+							<button class="btn" type="submit" name="sub" value="visualize">
+								Visualize
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

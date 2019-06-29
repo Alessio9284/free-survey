@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Visualize Survey</title>
+		<% include ../partials/header.ejs %>
+		<link rel="stylesheet" type="text/css" href="/css/survey.css">
+		<script type="text/javascript" src="/js/survey.js"></script>
+	</head>
+	<body>
+		<div class="contenitore">
+			<div class="frame">
+				<span class="titolo">
+					<span>Welcome to</span> FreeSurvey
+				</span>
+
+				<h2 id="name"><%= survey.name %></h2>
+				<p id="description"><%= survey.description %></p>
+				
+				<section id="survey">
+					<% var questions = survey.questions; %>
+					<% for(var i = 0; i < questions.length; i++) { %>
+						<div class="question" id="question<%= i %>">
+							<h2><%= questions[i].question %></h2>
+							<hr>
+							<div class="answers">
+								<% for(var j = 0; j < questions[i].answers.length; j++) { %>
+									<p>
+										<%= questions[i].answers[j] %><br>
+										<input type="radio" name="answer<%= i %>" id="answer<%= i %><%= j %>" value="<%= questions[i].answers[j] %>" />
+									</p>
+								<% } %>
+							</div>
+						</div>
+					<% } %>
+				</section>
+				<p>
+					<span id="date"><%= survey.date %></span>
+					<span id="user"><%= survey.user %></span>
+				</p>
+				<input type="button" id="send" value="Send replies">
+			</div>
+		</div>
+	</body>
+</html>

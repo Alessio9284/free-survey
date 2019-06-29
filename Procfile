@@ -1,1 +1,1 @@
-web: gunicorn freeSurvey.wsgi:application --log-file -
+web: node index.js
