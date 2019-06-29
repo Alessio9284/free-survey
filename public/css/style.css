@@ -9,10 +9,23 @@
 
 body, html
 {
-	height: 100%;
 	font-family: Montserrat, sans-serif;
+}
+
+body::before
+{
 	background-image: url("../img/sfondo.jpg");
+	background-repeat: no-repeat;
+	background-position: center top;
 	background-size: cover;
+	content: '';
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	will-change: transform;
+	z-index: -1;
 }
 
 a
@@ -66,7 +79,7 @@ button:hover
 
 .footer
 {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 .footer > a
@@ -89,6 +102,7 @@ button:hover
 	align-items: center;
 	padding: 15px;
 	background: rgba(255, 255, 255, 0.2);
+	position: absolute;
 }
 
 .frame
@@ -285,9 +299,15 @@ button:hover
 
 @media screen and (max-width: 400px)
 {
-	.log_reg
+	body, html
 	{
-		min-width: 250px;
-    	padding: 60px 30px 33px 30px;
-    }
+		background-image: url("../img/sfondomobile.jpg");
+	}
+
+	.frame
+	{
+		width: 100%;
+		min-width: 300px;
+		padding: 60px 30px 33px 30px;
+	}
 }

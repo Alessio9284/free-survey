@@ -85,3 +85,12 @@ input[type=button]
 {
 	width: 50%;
 }
+
+@media screen and (max-width: 500px)
+{
+	.frame
+	{
+		min-width: 350px;
+		padding: 60px 10px 33px 10px;
+	}
+}
