@@ -23,7 +23,16 @@ $(document).on("click", "#send", function()
 		success: function(data)
 		{
 			//console.log(data);
-			document.location = data.red;
+			swal.fire(
+			{
+				title: "The answers have been sent correctly to freesurvey!",
+				text: "Register yourself to create surveys. Have fun asking your friends all the things you want.",
+				type: "success",
+			})
+			.then((response) =>
+			{
+				document.location = data.red;
+			});
 		},
 		error: function(e)
 		{
