@@ -25,7 +25,7 @@ $(document).on("click", "#send", function()
 			//console.log(data);
 			swal.fire(
 			{
-				title: "The answers have been sent correctly to freesurvey!",
+				title: "The answers have been sent correctly to FreeSurvey!",
 				text: "Register yourself to create surveys. Have fun asking your friends all the things you want.",
 				type: "success",
 			})

@@ -96,7 +96,16 @@ $(document).on("click", "#publish", function()
 		success: function(data)
 		{
 			//console.log(data);
-			document.location = data.red;
+			swal.fire(
+			{
+				title: "The survey was saved correctly to FreeSurvey!",
+				text: "Keep creating polls for your friends, it's fun :)",
+				type: "success",
+			})
+			.then((response) =>
+			{
+				document.location = data.red;
+			});
 		},
 		error: function(e)
 		{
