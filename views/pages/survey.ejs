@@ -44,7 +44,12 @@
 					<span id="date"><%= survey.date %></span>
 					<span id="user"><%= survey.user %></span>
 				</p>
-				<input type="button" id="send" value="Send replies">
+				<footer id="buttons">
+					<input type="button" id="send" value="Send replies">
+					<% if(user == "admin") { %>
+						<button id="link">Copy Link</button>
+					<% } %>
+				</footer>
 			</div>
 		</div>
 	</body>

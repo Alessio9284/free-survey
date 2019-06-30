@@ -42,8 +42,8 @@ input[type=button]
 {
 	width: 200px;
 	margin: 10px;
-    border: 1px solid lightgray;
-    padding: 10px;
+	border: 1px solid lightgray;
+	padding: 10px;
 }
 
 #form_responsive
@@ -72,8 +72,8 @@ input[type=button]
 #base
 {
 	width: 80%;
-    padding: 20px;
-    margin: 10px auto;
+	padding: 20px;
+	margin: 10px auto;
 }
 
 #qs > input[type=button]

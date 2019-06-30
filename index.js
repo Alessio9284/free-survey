@@ -83,14 +83,13 @@ app.get('/create', function(req, red)
 
 app.get('/survey', function(req, red)
 {
-	if(!req.query.user && !req.query.id)
+	if(!req.query.id)
 	{
 		red.redirect('/');
 	}
 	else
 	{
 		var obj = req.query;
-		var user = obj.user;
 		var id = new ObjectID(obj.id);
 
 		mongo.connect(url, { useNewUrlParser: true }, function(err, db)
@@ -100,7 +99,7 @@ app.get('/survey', function(req, red)
 			var cur = db.db(database);
 			var survey = 0;
 
-			cur.collection("surveys").find({user: user, _id : id}).toArray(function(err, res)
+			cur.collection("surveys").find({_id : id}).toArray(function(err, res)
 			{
 				var user = (req.session.nickname ? "admin" : "user");
 
@@ -244,7 +243,7 @@ app.post('/answers', function(req, red)
 
 				//console.log("1 document updated");
 
-	    		db.close();
+				db.close();
 			});
 			nested = {};
 		}
@@ -253,7 +252,7 @@ app.post('/answers', function(req, red)
 	});
 });
 
-/* reset totale */
+/* total reset */
 app.get('/truncate', function(req, red)
 {
 	mongo.connect(url, { useNewUrlParser: true }, function(err, db)
@@ -279,10 +278,5 @@ app.get('/truncate', function(req, red)
 	red.redirect('/');
 });
 
-/* ascolto sulla porta 5000 */
+/* listening on port 5000 */
 app.listen(PORT, () => console.log(`Listening on port: ${ PORT }`));
-
-function checkSession(req)
-{
-	return req.session.nickname;
-}

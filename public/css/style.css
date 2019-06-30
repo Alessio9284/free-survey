@@ -54,7 +54,7 @@ a:hover
 	color: linear-gradient(left, #21d4fd, #b721ff);
 }
 
-input, textarea
+input, textarea, button
 {
 	font-family: Montserrat, sans-serif;
 }

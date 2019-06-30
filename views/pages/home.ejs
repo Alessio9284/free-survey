@@ -4,7 +4,6 @@
 		<title>Home Page</title>
 		<% include ../partials/header.ejs %>
 		<link rel="stylesheet" type="text/css" href="/css/home.css">
-		<script type="text/javascript" src="/js/home.js"></script>
 	</head>
 	<body>
 		<div class="contenitore">
@@ -16,7 +15,7 @@
 				<h2 id="sottotitolo">Your Polls</h2>
 				<section id="centro">
 					<% for(var i = 0; i < surveys.length; i++) { %>
-						<% var url = "../survey?user=" + surveys[i].user + "&id=" + surveys[i]._id; %>
+						<% var url = "../survey?id=" + surveys[i]._id; %>
 						<div class="survey" onclick="document.location = '<%= url %>'">
 							<p class="name"><%= surveys[i].name %></p>
 							<p class="description"><%= surveys[i].description %></p>

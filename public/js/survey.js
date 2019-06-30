@@ -31,3 +31,12 @@ $(document).on("click", "#send", function()
 		}
 	});
 });
+
+$(document).on("click", "#link", function()
+{
+	var temp = $("<input>");
+	$("body").append(temp);
+	temp.val(document.location.href).select();
+	document.execCommand("copy");
+	temp.remove();
+});
