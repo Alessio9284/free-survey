@@ -33,10 +33,7 @@ app.set('view engine', 'ejs');
 /* REST */
 app.get('/', function(req, red)
 {
-	if(req.session.nickname)
-	{
-		delete req.session;
-	}
+	req.session.destroy();
 
 	red.render('pages/signin');
 });
