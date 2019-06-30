@@ -9,12 +9,7 @@ $(document).on("click", "#send", function()
 
 	for(var i = 0; i < $(".question").length; i++)
 	{
-		scores.push(
-			{
-				answer : $("#question" + i + " > .answers p input[type=radio]:checked").val(),
-				question : $("#question" + i + " h2").html()
-			}
-		);
+		scores.push($("#question" + i + " > .answers p input[type=radio]:checked").attr('id').slice(-1));
 	}
 
 	$.ajax(
@@ -27,8 +22,8 @@ $(document).on("click", "#send", function()
 		},
 		success: function(data)
 		{
-			console.log(data);
-			//document.location = data.red;
+			//console.log(data);
+			document.location = data.red;
 		},
 		error: function(e)
 		{

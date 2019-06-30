@@ -223,6 +223,7 @@ app.post('/answers', function(req, red)
 {
 	var obj = req.body;
 
+	var nested = {}, update = "";
 	var id = new ObjectID(obj.id);
 
 	mongo.connect(url, { useNewUrlParser: true }, function(err, db)
@@ -233,34 +234,22 @@ app.post('/answers', function(req, red)
 
 		for(var i = 0; i < obj.scores.length; i++)
 		{
-			var search = {
-				_id : id,
-				"questions.question" : obj.scores[i].question,
-				"questions.answers.answer" : obj.scores[i].answer
-			};
+			nested["questions." + i + ".answers." + obj.scores[i] + ".score"] = 1;
 
-			console.log(search);
+			update = { $inc : nested };
 
-			var update = { $inc : { "questions.$[element1].answers.$[element2].score" : 1 } };
+			cur.collection("surveys").updateOne({ _id : id }, update, function(err, res)
+			{
+				if (err) throw err;
 
-			cur.collection("surveys").updateOne(search, update,
-				{ "arrayFilters":
-					[
-						{ "element1.question.score": { "$exists": true } },
-						{ "element2.answer.score": { "$exists": true } },
-					]
-				},
-				function(err, res)
-				{
-					if (err) throw err;
+				//console.log("1 document updated");
 
-					//console.log("Collection inserted!");*/
-
-					console.log("1 document updated");
-	    			db.close();
-				}
-			);
+	    		db.close();
+			});
+			nested = {};
 		}
+
+		red.json({red : "/home"});
 	});
 });
 
@@ -292,76 +281,6 @@ app.get('/truncate', function(req, red)
 
 /* ascolto sulla porta 5000 */
 app.listen(PORT, () => console.log(`Listening on port: ${ PORT }`));
-
-/*
-urlpatterns = [
-	path('survey/<nickname>/<int:id_>', views.survey, name = 'survey'),
-
-	#path('survey/', views.userlist, name = 'userlist')
-	#path('survey/<nickname>', views.surveylist, name = 'surveylist')
-	path('answer/', views.answer, name = 'answer'),
-]
-
-def home(request):
-
-	if checkSession(request):
-
-		nickname = request.session['nickname']
-		surveys = Survey.objects.filter(user = nickname)
-
-		return render(request, 'survey/home.html', {'surveys' : surveys})
-	else:
-		return HttpResponseRedirect('../')
-
-def survey(request, nickname, id_):
-
-	u = User.objects.get(nickname = nickname)
-	s = Survey.objects.filter(id = id_, user = u)
-	q = Question.objects.filter(survey = s[0])
-	a = Answer.objects.filter(question = q[0])
-
-	# per ogni richiesta delle questioni bisogna prelevare anche tutte le risposte possibili
-
-	survey = serialize('json', s.only('name', 'description'))
-	questions = serialize('json', q.only('question'))
-	answers = serialize('json', a.only('answer'))
-
-	print(survey)
-	print(questions)
-	print(answers)
-
-	if checkSession(request):
-		return render(request, 'survey/survey.html',
-			{
-				'survey' : json.dumps(survey),
-				'questions' : json.dumps(questions),
-				'answers' : json.dumps(answers),
-				'status' : 'author'
-			}
-		)
-	else:
-		return render(request, 'survey/survey.html',
-			{
-				'survey' : json.dumps(survey),
-				'questions' : json.dumps(questions),
-				'answers' : json.dumps(answers),
-				'status' : 'user'
-			}
-		)
-
-
-
-def answer(request):
-	'''
-		if checkSession(request):
-
-			userlist = serializers.serialize('json', User.objects.filter(active = True))
-
-			return JsonResponse(userlist, safe = False)
-		else:
-	'''		
-	return HttpResponseRedirect('../')
-*/
 
 function checkSession(req)
 {

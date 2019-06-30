@@ -1,6 +1,5 @@
 # Sondaggi Gratis
 
-- pip install -r requirements.txt
-- python manage.py migrate
-- python manage.py makemigrations
-- python manage.py runserver
+- nodemon start
+
+- node start
