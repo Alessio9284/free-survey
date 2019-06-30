@@ -72,7 +72,7 @@ $(document).on("click", "#publish", function()
 
 		for(var j = 0; j < $(".question > .answers")[i].children.length; j++)
 		{
-			answers.push({answer : $($(".question > .answers")[i].children[j]).val(), score: parseInt(0)});
+			answers.push({answer : $($(".question > .answers")[i].children[j]).val()});
 		}
 
 		questions.push({question : $($(".question > input")[i]).val(), answers : answers});
@@ -83,8 +83,8 @@ $(document).on("click", "#publish", function()
 	var json =
 	{
 		name : $("input[name=title]").val(),
-		description : $("textarea[name=description]").val(),
-		date: d.toLocaleDateString() + " " + d.toLocaleTimeString(),
+		description : $("textarea[name=description]").val().split("\n").join("<br>"),
+		date: d.toLocaleTimeString() + " " + d.toDateString(),
 		questions : questions
 	};
 

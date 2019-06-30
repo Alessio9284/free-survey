@@ -76,11 +76,13 @@ h2::-webkit-scrollbar
 	-moz-justify-content: center;
 	-ms-justify-content: center;
 	justify-content: center;
+
+	margin-top: 10px;
 }
 
 #name
 {
-	margin-top: 10px;
+	margin-top: 30px;
 }
 
 #description

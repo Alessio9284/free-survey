@@ -18,7 +18,7 @@
 						<% var url = "../survey?id=" + surveys[i]._id; %>
 						<div class="survey" onclick="document.location = '<%= url %>'">
 							<p class="name"><%= surveys[i].name %></p>
-							<p class="description"><%= surveys[i].description %></p>
+							<p class="description"><%- surveys[i].description %></p>
 							<p class="date"><%= surveys[i].date %></p>
 						</div>
 					<% } %>
